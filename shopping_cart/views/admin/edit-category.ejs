@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <title>Edit Category</title>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include ('../_layouts/admin_header') %>
+  <a href="/admin/categories">Back to all page</a>
+  <form action="/admin/categories/edit-category/<%= slug %>" method="post">
+    <div class="form-group">
+        Title: <input class="form-control" type="text" name="title" value="<%= title %>"><br>
+    </div>
+    <input type="hidden" name="id" value="<%= id %>">
+    <button>Submit</button>
+  </form>
+  <%- include ('../_layouts/admin_footer') %> 
+</body>
+
+</html>

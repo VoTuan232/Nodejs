@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <title>All Product</title>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include ('../_layouts/admin_header') %>
+  <h1>Add Product!</h1> 
+  <a href="/admin/products/add-product">Add new product</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Product Img</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(function (product) { %>
+        <tr id="id_<%= product._id %>" class="<%= product.slug %>">
+          <td><%= product.title %></td>
+          <td><%= parseFloat(product.price).toFixed(2) %></td>
+          <td><%= product.category %></td>
+          <td>
+            <% if (product.img === "") { %>
+              <img src="/images/noimage.png" alt="no img">
+              <% } else { %>
+                <img src="/product_images/<%= product.id %>/<%= product.img %>" alt="product img">
+            <% } %>
+          </td>
+          <td><a href="/admin/products/edit-product/<%= product.slug %>">Edit</a></td>
+          <td><a class="confirmDelete" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <%- include ('../_layouts/admin_footer') %> 
+</body>
+
+</html>

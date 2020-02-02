@@ -1,0 +1,12 @@
+.ui-sortable tr:not(.home) {
+  cursor: pointer;
+}
+
+#imgPreview {
+  margin: 20px;
+}
+
+tr td img {
+  width: 100px;
+  height: 100px;
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <title>All Page</title>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include ('../_layouts/admin_header') %>
+  <h1>Add Page here</h1> 
+  <a href="/admin/pages/add-page">Add new page</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% pages.forEach(function (page) { %>
+        <tr id="id_<%= page._id %>" class="<%= page.slug %>">
+          <td><%= page.title %></td>
+          <td><a href="/admin/pages/edit-page/<%= page.slug %>">Edit</a></td>
+          <td><a class="confirmDelete" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <%- include ('../_layouts/admin_footer') %> 
+  <script>
+    $('tbody').sortable({
+      items: "tr:not('.home')",
+      placeholder: "ui-state-hightlight",
+      update: function () {
+        var ids = $('tbody').sortable("serialize");
+        var url = "/admin/pages/reorder-pages";
+
+        $.post(url, ids);
+      }
+    });
+  </script>
+</body>
+
+</html>
