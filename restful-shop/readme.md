@@ -21,3 +21,5 @@ Package:
   Jsonwebtoken: token (header, payload, signature) for auth
     npm install jsonwebtoken
     pass token in json or in header (Authorization: Bearer token)
+  Swagger: tool for 
+    npm i swagger-ui-express -S

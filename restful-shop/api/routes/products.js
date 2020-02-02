@@ -17,6 +17,7 @@ const upload = multer({storage: storage});
 const Product = require('../models/product');
 
 router.get('/', checkAuth, (req, res, next) => {
+// router.get('/', (req, res, next) => {
   Product.find()
   .select('name price _id')
   .exec()

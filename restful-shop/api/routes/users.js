@@ -100,6 +100,28 @@ router.post('/login', (req, res, next) => {
       error: err,
     })
   })
+});
+
+router.get('/get-all', (req, res, next) => {
+  User.find()
+  .exec()
+  .then(result => {
+    res.status(200).json({
+      message: 'Get All User',
+      users: result.map(x => {
+        return {
+          _id: x._id,
+          email: x.email,
+        }
+      }),
+    });
+  })
+  .catch(err => {
+    // console.log(err);
+    res.status(500).json({
+      error: err,
+    })
+  })
 })
 
 module.exports = router;

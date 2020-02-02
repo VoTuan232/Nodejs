@@ -4,9 +4,17 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const productRoutes = require('./api/routes/products');
-const orderRoutes = require('./api/routes/orders');
-const userRoutes = require('./api/routes/users');
+// swagger
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger-doc.json');
+swagger = require('./swagger.json');
+const options = {
+  swaggerOptions: {
+    explorer: true,
+    validatorUrl: null,
+  },
+  // customCss: '.swagger-ui .topbar { display: none }'
+};
 
 // connect db
 mongoose.connect('mongodb://localhost/restful-shop', {
@@ -40,9 +48,17 @@ app.use((req, res, next) => {
 });
 
 // router
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swagger, options));
+
+const productRoutes = require('./api/routes/products');
+const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/users');
+
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/user', userRoutes);
+// app.use('/api/v1', productRoutes);
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
