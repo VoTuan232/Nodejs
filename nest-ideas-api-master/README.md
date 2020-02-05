@@ -1,12 +1,4 @@
-YT For create Project: https://dev.to/itnext/adding-live-documentation-to-your-rest-api-with-swagger-and-nest-js-211e
-
----
-
-npm i -g @nestjs/cli
-nest new swagger-demo
-npm install --save @nestjs/swagger swagger-ui-express
-
----
+# Ideas APP API
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
@@ -38,48 +30,21 @@ npm install --save @nestjs/swagger swagger-ui-express
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+A reddit/twitter style app to keep track of posted App Ideas. This is the companion source code for the YouTube tutorial [Ideas App - NestJS API](https://www.youtube.com/watch?v=NF9Xn4g5MJY&list=PLBeQxJQNprbiJm55q7nTAfhMmzIC8MWxc) series.
 
-```bash
-$ npm install
-```
+### User Stories - Project Timeline
 
-## Running the app
+- x Authenticate users
+- x Users can CRUD ideas
+- x Users can upvote/downvote ideas
+- x Users can bookmark ideas
+- x Users can comment on ideas
+- x Ideas can be seen in realtime
 
-```bash
-# development
-$ npm run start
+### Stack
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Database - PostgreSQL
+- REST API - NestJS
+- GraphQL API - NestJS
+- Rest Frontend - Angular with NGRX
+- GraphQL Frontend - React (Native?) with Apollo Client
