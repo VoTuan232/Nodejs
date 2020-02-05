@@ -1,0 +1,17 @@
+{
+  "name": "swagger-nestjs",
+  "version": "1.0.0",
+  "description": "YT: https://docs.nestjs.com/recipes/swagger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/swagger": "^4.2.4",
+    "nodemon": "^2.0.2",
+    "swagger-ui-express": "^4.1.3"
+  }
+}

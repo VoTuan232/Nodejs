@@ -4,17 +4,21 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-// swagger
-const swaggerUi = require('swagger-ui-express'),
-swaggerDocument = require('./swagger-doc.json');
-swagger = require('./swagger.json');
-const options = {
-  swaggerOptions: {
-    explorer: true,
-    validatorUrl: null,
-  },
-  // customCss: '.swagger-ui .topbar { display: none }'
-};
+// swagger ui
+// const swaggerUi = require('swagger-ui-express'),
+//   swaggerDocument = require('./swagger-doc.json');
+// swagger = require('./swagger.json');
+// const options = {
+//   swaggerOptions: {
+//     explorer: true,
+//     validatorUrl: null,
+//   },
+//   // customCss: '.swagger-ui .topbar { display: none }'
+// };
+
+// swagger generator
+const swaggerDocs = require('./swaggerJsdoc');
+swaggerDocs(app);
 
 // connect db
 mongoose.connect('mongodb://localhost/restful-shop', {
@@ -24,14 +28,16 @@ mongoose.connect('mongodb://localhost/restful-shop', {
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection to mongodb error:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('Connected to Mongodb');
 });
 
 // middleware for logged
 app.use(morgan('dev'));
 //middleare for parse body
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 
 // pass header for pass cors
@@ -41,15 +47,14 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    return res.status(200).json({
-    });
+    return res.status(200).json({});
   }
   next();
 });
 
 // router
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-app.use('/api', swaggerUi.serve, swaggerUi.setup(swagger, options));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+// app.use('/api', swaggerUi.serve, swaggerUi.setup(swagger, options));
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
