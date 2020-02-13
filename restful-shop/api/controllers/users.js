@@ -103,7 +103,7 @@ exports.login = (req, res, next) => {
         bcrypt.compare(req.body.password, result.password, (err, isEqual) => {
           if (err) {
             return res.status(401).json({
-              message: 'Encoded password faild!',
+              message: 'Auth faild!',
               error: err,
             });
           } else {
