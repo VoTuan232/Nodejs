@@ -39,4 +39,7 @@ npm install swagger-jsdoc --save
 \_\*\* Express-Validator: middleware
 npm install --save express-validator
 
+Express rate limit: giới hạn yêu cầu lặp lại
+npm install --save express-rate-limit
+
 YT-swagger: https://www.youtube.com/watch?v=apouPYPh_as
