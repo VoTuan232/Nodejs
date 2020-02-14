@@ -42,4 +42,8 @@ npm install --save express-validator
 Express rate limit: giới hạn yêu cầu lặp lại
 npm install --save express-rate-limit
 
+Tạo dự liệu mẫu: seeder and faker
+npm install mongoose-seed --save
+npm install faker --save
+
 YT-swagger: https://www.youtube.com/watch?v=apouPYPh_as

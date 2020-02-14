@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const rateLimit = require("express-rate-limit");
 
+const configDatabase = require("./api/config/database");
+
 app.enable("trust proxy");
 
 // swagger ui
@@ -23,8 +25,8 @@ app.enable("trust proxy");
 const swaggerDocs = require("./swaggerJsdoc");
 swaggerDocs(app);
 
-// connect db
-mongoose.connect("mongodb://localhost/restful-shop", {
+// connect db and seeder faker
+mongoose.connect(configDatabase.database, {
   useCreateIndex: true,
   useNewUrlParser: true
 });
@@ -76,10 +78,14 @@ app.use(limiter); // apply all request
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
 const userRoutes = require("./api/routes/users");
+const carMarkerRoutes = require("./api/routes/carMarkers");
+const carMarkerCarNameRoutes = require("./api/routes/carMarkerCarNames");
 
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/user", userRoutes);
+app.use("/car_makers", carMarkerRoutes);
+app.use("/car_maker_car_names", carMarkerCarNameRoutes);
 // app.use('/api/v1', productRoutes);
 
 app.use((req, res, next) => {
