@@ -12,12 +12,10 @@ const loadJson = jsonPath => {
 const addTableData = (key, jsonPath, model, documents) => {
   data[key] = {
     path: jsonPath,
-    seed: [
-      {
-        model: model,
-        documents: documents
-      }
-    ]
+    seed: [{
+      model: model,
+      documents: documents
+    }]
   };
 };
 
@@ -77,12 +75,12 @@ let data = {};
 //   "CarTransmissionCode",
 //   loadJson("../../database/carTransmissionCodes.json")
 // );
-// addTableData(
-//   "carMarkerCarNames",
-//   "../../../api/models/carMarkerCarNames.js",
-//   "CarMarkerCarName",
-//   loadJson("../../database/carMarkerCarNames.json")
-// );
+addTableData(
+  "carMakerCarNames",
+  "../../../api/models/carMakerCarNames.js",
+  "CarMakerCarName",
+  loadJson("../../database/carMakerCarNames.json")
+);
 // addTableData(
 //   "carGradeStyles",
 //   "../../../api/models/carGradeStyles.js",
@@ -90,7 +88,7 @@ let data = {};
 //   loadJson("../../database/carGradeStyles.json")
 // );
 
-seeder.connect(configDatabase.database, function() {
+seeder.connect(configDatabase.database, function () {
   for (let key in data) {
     // console.log(key);
     // console.log(data[key].path);
@@ -105,8 +103,8 @@ const saveData = (modelPath, model, data) => {
     modelPath // load mongoose model
     // "../../../api/models/carAccidentHistoryCodes.js" // load mongoose model
   ]);
-  seeder.clearModels([model], function() {
-    seeder.populateModels(data, function() {
+  seeder.clearModels([model], function () {
+    seeder.populateModels(data, function () {
       seeder.disconnect();
     });
   });

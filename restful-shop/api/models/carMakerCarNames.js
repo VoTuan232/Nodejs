@@ -6,7 +6,8 @@ const carMarkerCarNameSchema = mongoose.Schema({
   id: Number,
   carBodyKindId: Number,
   carMakerCarKindId: Number,
-  name: String
+  name: String,
+  carMakerId: Number,
 });
 
-module.exports = mongoose.model("CarMarkerCarName", carMarkerCarNameSchema);
+module.exports = mongoose.model("CarMakerCarName", carMarkerCarNameSchema);

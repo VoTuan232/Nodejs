@@ -33,7 +33,7 @@ mongoose.connect(configDatabase.database, {
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection to mongodb error:"));
-db.once("open", function() {
+db.once("open", function () {
   console.log("Connected to Mongodb");
 });
 
@@ -79,7 +79,7 @@ const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
 const userRoutes = require("./api/routes/users");
 const carMarkerRoutes = require("./api/routes/carMarkers");
-const carMarkerCarNameRoutes = require("./api/routes/carMarkerCarNames");
+const carMarkerCarNameRoutes = require("./api/routes/carMakerCarNames");
 
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);

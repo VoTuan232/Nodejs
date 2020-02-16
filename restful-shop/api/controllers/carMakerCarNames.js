@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
-const { check, validationResult } = require("express-validator");
+const {
+  check,
+  validationResult
+} = require("express-validator");
 
-const CarMarkerCarName = require("../models/carMarkerCarNames");
+const CarMarkerCarName = require("../models/carMakerCarNames");
 
 exports.getCarMakerCarNames = (req, res, next) => {
   const errors = validationResult(req);
@@ -16,8 +19,7 @@ exports.getCarMakerCarNames = (req, res, next) => {
     return res.status(422).json({
       message: "car_maker_car_name[car_maker_id]  is required!"
     });
-  } else {
-  }
+  } else {}
 
   // CarMarker.find()
   //   .exec()
