@@ -1,8 +1,9 @@
-const { check, validationResult } = require("express-validator");
+const {
+  check,
+  validationResult
+} = require("express-validator");
 
-const CarMarkerCarName = require("../models/carMakerCarNames");
 const connection = require("../database/connection");
-const AbstractBaseController = new (require("../base/baseController"))();
 
 exports.getCarMakerCarNames = (req, res, next) => {
   const errors = validationResult(req);
