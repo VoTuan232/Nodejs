@@ -78,12 +78,18 @@ const orderRoutes = require("./api/routes/orders");
 const userRoutes = require("./api/routes/users");
 const carMarkerRoutes = require("./api/routes/carMarkers");
 const carMarkerCarNameRoutes = require("./api/routes/carMakerCarNames");
+const carGradeStyleRoutes = require("./api/routes/carGradeStyles");
+const carCertifyStyles = require("./api/routes/carCertifyStyles");
+const genericCodes = require("./api/routes/genericCodes");
 
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/user", userRoutes);
 app.use("/car_makers", carMarkerRoutes);
 app.use("/car_maker_car_names", carMarkerCarNameRoutes);
+app.use("/car_grade_styles", carGradeStyleRoutes);
+app.use("/car_certify_styles", carCertifyStyles);
+app.use("/generic_codes", genericCodes);
 // app.use('/api/v1', productRoutes);
 
 app.use((req, res, next) => {

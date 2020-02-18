@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const CarMarkerControll = require("../controllers/carMakers");
+const CarMarkerController = new (require("../controllers/carMakers"))();
 const checkAuth = require("../middleware/check-auth");
 
-router.get("/", CarMarkerControll.getCarMakers);
+router.get("/", CarMarkerController.getCarMakers);
 
 module.exports = router;

@@ -1,11 +1,10 @@
 const { check, validationResult } = require("express-validator");
 
-const CarMarkerCarName = require("../models/carMakerCarNames");
 const connection = require("../database/connection");
 const BaseController = require("../base/baseController");
 
-class CarMakerCarNameController extends BaseController {
-  getCarMakerCarNames(req, res, next) {
+class GenericCodeController extends BaseController {
+  getGenericCodes(req, res, body) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({
@@ -13,14 +12,16 @@ class CarMakerCarNameController extends BaseController {
         errors: errors.array()
       });
     }
-    if (!req.query.car_maker_id) {
+    if (!req.query.type) {
       return res.status(422).json({
-        message: "car_maker_id  is required!"
+        message: "type  is required!"
       });
     } else {
       const query =
-        "SELECT * FROM car_maker_car_names where car_maker_id = " +
-        req.query.car_maker_id;
+        "SELECT * FROM generic_codes where type like " +
+        "'" +
+        req.query.type +
+        "'";
       connection.query(query, (err, data, fields) => {
         if (err) {
           console.log(err);
@@ -30,8 +31,8 @@ class CarMakerCarNameController extends BaseController {
           });
         } else {
           res.status(200).json({
-            message: "Get car_maker_car_name successfully!",
-            carMakerCarNames: data
+            message: `Get generic code ${req.query.type} successfully!`,
+            genericeCodes: data
           });
         }
       });
@@ -39,4 +40,4 @@ class CarMakerCarNameController extends BaseController {
   }
 }
 
-module.exports = CarMakerCarNameController;
+module.exports = GenericCodeController;
