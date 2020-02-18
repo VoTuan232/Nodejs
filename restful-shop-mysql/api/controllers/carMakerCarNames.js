@@ -4,6 +4,8 @@ const CarMarkerCarName = require("../models/carMakerCarNames");
 const connection = require("../database/connection");
 const AbstractBaseController = new (require("../base/baseController"))();
 
+// class CarMakerCarNameController extends AbstractBaseController {}
+
 exports.getCarMakerCarNames = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
