@@ -6,4 +6,6 @@ const checkAuth = require("../middleware/check-auth");
 
 router.get("/", CarMarkerController.getCarMakers);
 
+router.get("/:id", CarMarkerController.getCarMakerById);
+
 module.exports = router;

@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
-const CarMarkerCarNameController = new (require("../controllers/carMakerCarNames"))();
+const CarGradeStyleController = new (require("../controllers/carGradeStyles"))();
 const checkAuth = require("../middleware/check-auth");
 
-router.get("/", CarMarkerCarNameController.getCarMakerCarNames);
+router.get("/", CarGradeStyleController.getCarGradeStyle);
 
 module.exports = router;
