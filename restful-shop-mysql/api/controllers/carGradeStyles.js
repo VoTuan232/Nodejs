@@ -12,14 +12,14 @@ class CarGradeStyleController extends BaseController {
         errors: errors.array()
       });
     }
-    if (!req.query.car_maker_car_name_id) {
+    if (!req.query.carMakerCarNameId) {
       return res.status(422).json({
         message: "car_maker_car_name_id  is required!"
       });
     } else {
       const query =
         "SELECT * FROM car_grade_styles where car_maker_car_name_id = " +
-        req.query.car_maker_car_name_id;
+        req.query.carMakerCarNameId;
       connection.query(query, (err, data, fields) => {
         if (err) {
           console.log(err);

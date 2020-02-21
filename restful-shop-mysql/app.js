@@ -6,11 +6,10 @@ const rateLimit = require("express-rate-limit");
 
 const configDatabase = require("./api/config/database");
 const connection = require("./api/database/connection");
-const appInterceptor = new(require("./api/base/httpInterceptor"))();
-const ObjectUtil = new(require("./api/utils/object"))();
+const appInterceptor = new (require("./api/base/httpInterceptor"))();
+const ObjectUtil = require("./api/utils/object");
 
 app.enable("trust proxy");
-
 // swagger ui
 // const swaggerUi = require('swagger-ui-express'),
 //   swaggerDocument = require('./swagger-doc.json');
@@ -56,7 +55,7 @@ app.use(bodyParser.json()); // to support JSON-encoded bodies
 let modifyResponseBody = (req, res, next) => {
   let oldSend = res.send;
 
-  res.send = function (data) {
+  res.send = function(data) {
     // console.log(arguments);
     // arguments[0] (or `data`) contains the response body
     // arguments[0] = "modified : " + arguments[0];
@@ -76,14 +75,20 @@ app.use((req, res, next) => {
   next();
 });
 
-let convertKeyToCamelCase = (data) => {
+let convertKeyToCamelCase = data => {
   let result = {};
   for (let key in data) {
     result[key] = data[key];
   }
 
   return ObjectUtil.convertKeyToCamelCase(result);
-}
+};
+
+// show information of api
+// app.use(function(req, res, next) {
+//   console.log("%s %s %s", req.method, req.url, req.path);
+//   next();
+// });
 
 // pass header for pass cors
 app.use((req, res, next) => {
@@ -114,27 +119,7 @@ const limiter = rateLimit({
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 // app.use('/api', swaggerUi.serve, swaggerUi.setup(swagger, options));
 
-const productRoutes = require("./api/routes/products");
-const orderRoutes = require("./api/routes/orders");
-const userRoutes = require("./api/routes/users");
-const carMarkerRoutes = require("./api/routes/carMarkers");
-const carMarkerCarNameRoutes = require("./api/routes/carMakerCarNames");
-const carGradeStyleRoutes = require("./api/routes/carGradeStyles");
-const carCertifyStyles = require("./api/routes/carCertifyStyles");
-const genericCodes = require("./api/routes/genericCodes");
-const carSpecifications = require("./api/routes/carSpecifications");
-const carCategoryColors = require("./api/routes/carCategoryColor");
-
-app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
-app.use("/user", userRoutes);
-app.use("/car_makers", carMarkerRoutes);
-app.use("/car_maker_car_names", carMarkerCarNameRoutes);
-app.use("/car_grade_styles", carGradeStyleRoutes);
-app.use("/car_certify_styles", carCertifyStyles);
-app.use("/generic_codes", genericCodes);
-app.use("/car_specifications", carSpecifications);
-app.use("/car_category_colors", carCategoryColors);
+require("./api/routes/index")(app);
 // app.use('/api/v1', productRoutes);
 
 app.use((req, res, next) => {

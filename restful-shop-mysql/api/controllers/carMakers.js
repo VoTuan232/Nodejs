@@ -1,4 +1,6 @@
 const BaseController = require("../base/baseController");
+const { check, validationResult, body } = require("express-validator");
+
 class CarMakerController extends BaseController {
   getCarMakers(req, res, next) {
     const query = "SELECT * FROM car_makers";
@@ -26,6 +28,14 @@ class CarMakerController extends BaseController {
   }
 
   getCarMakerById(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({
+        message: "Invalid validator!",
+        errors: errors.array()
+      });
+    }
+
     const id = req.params.id;
     const query = "SELECT * FROM car_makers WHERE id = " + id;
 
@@ -52,4 +62,4 @@ class CarMakerController extends BaseController {
   }
 }
 
-module.exports = CarMakerController;
+module.exports = new CarMakerController();

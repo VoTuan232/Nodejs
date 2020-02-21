@@ -1,5 +1,5 @@
 const connection = require("../database/connection");
-const ObjectUtil = new (require("../utils/object"))();
+const ObjectUtil = require("../utils/object");
 
 class BaseController {
   constructor() {

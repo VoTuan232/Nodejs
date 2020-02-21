@@ -49,7 +49,6 @@ class CarSpecificationController extends BaseController {
             });
           },
           car => {
-            // console.log(car);
             car = car[0];
 
             res.status(200).json({
@@ -72,4 +71,4 @@ class CarSpecificationController extends BaseController {
   }
 }
 
-module.exports = CarSpecificationController;
+module.exports = new CarSpecificationController();

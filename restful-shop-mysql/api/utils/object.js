@@ -47,4 +47,4 @@ class ObjectUtil {
   }
 }
 
-module.exports = ObjectUtil;
+module.exports = new ObjectUtil();
