@@ -137,7 +137,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-// middleware interceptor
-// app.use(appInterceptor.intercept);
-
 module.exports = app;

@@ -6,5 +6,7 @@ module.exports = {
   dbUser: "root",
   dbPassword: "votuan883279",
   EMAIL_USERNAME: "abcd@xxx.com",
-  EMAIL_PASSWORD: "xxxxx"
+  EMAIL_PASSWORD: "xxxxx",
+  baseUrl: "/api/v1",
+  port: 2000
 };

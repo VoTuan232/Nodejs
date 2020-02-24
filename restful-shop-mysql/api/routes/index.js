@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const base = "/api/v1";
+const base = require("../config/config").baseUrl;
 
 const productRoutes = require("./products");
 const orderRoutes = require("./orders");
