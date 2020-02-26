@@ -29,6 +29,57 @@ class BaseController {
       }
     });
   }
+
+  transactions(errorCallback, successCallback, ...transactions) {
+    transactions = ObjectUtil.convertKeyToSnakeCase(transactions);
+    connection.beginTransaction(function(err) {
+      if (err) {
+        console.log("Error transaction!");
+        throw err;
+      }
+
+      new BaseController().transaction(
+        errorCallback,
+        successCallback,
+        transactions
+      );
+    });
+  }
+
+  transaction(errorCallback, successCallback, transactions, data = []) {
+    connection.query(transactions[0].query, transactions[0].value, function(
+      err,
+      result
+    ) {
+      data.push(result);
+      if (err) {
+        connection.rollback(function() {
+          errorCallback(err);
+          throw err;
+        });
+      }
+      transactions.shift();
+      if (transactions.length === 0) {
+        connection.commit(function(err) {
+          if (err) {
+            connection.rollback(function() {
+              errorCallback(err);
+              throw err;
+            });
+          }
+          successCallback(data);
+          console.log("Transaction success!");
+        });
+      } else {
+        new BaseController().transaction(
+          errorCallback,
+          successCallback,
+          transactions,
+          data
+        );
+      }
+    });
+  }
 }
 
 module.exports = BaseController;

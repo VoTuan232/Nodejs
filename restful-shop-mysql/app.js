@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const rateLimit = require("express-rate-limit");
 
 const configDatabase = require("./api/config/database");
-const connection = require("./api/database/connection");
 const appInterceptor = new (require("./api/base/httpInterceptor"))();
+const connection = require("./api/database/connection");
 const ObjectUtil = require("./api/utils/object");
 
 app.enable("trust proxy");
@@ -27,14 +27,14 @@ const swaggerDocs = require("./swaggerJsdoc");
 swaggerDocs(app);
 
 // connect db and seeder faker
-// connection.connect(err => {
-//   if (err) {
-//     console.error("An error occurred while connecting to the DB");
-//     throw err;
-//   } else {
-//     console.log("connect to mysql successfully!");
-//   }
-// });
+connection.connect(err => {
+  if (err) {
+    console.error("An error occurred while connecting to the DB");
+    throw err;
+  } else {
+    console.log("connect to mysql successfully!");
+  }
+});
 
 // express validator
 

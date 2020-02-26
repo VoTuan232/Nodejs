@@ -16,4 +16,16 @@ router.post(
   CarSpecificationController.create
 );
 
+router.post(
+  "/transaction",
+  validation.bodyExists([
+    "carGradeStyleId",
+    "genericCodeCarDriveCodeId",
+    "genericCodeCarMileageUnitCodeId",
+    "carCategoryColorId",
+    "genericCodeCarNavigationCodeId"
+  ]),
+  CarSpecificationController.createWidthTransaction
+);
+
 module.exports = router;
